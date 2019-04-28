@@ -8,47 +8,78 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import {GridListTileBar} from "@material-ui/core";
+import GridList from "@material-ui/core/GridList";
+import GridListTile from "@material-ui/core/GridListTile";
+import ListSubheader from "@material-ui/core/ListSubheader";
+import IconButton from "@material-ui/core/IconButton";
 
-const styles = {
-    card: {
-        maxWidth: 'auto',
+// const styles = {
+//     card: {
+//         maxWidth: 'auto',
+//     },
+//     media: {
+//         height: 'auto',
+//     },
+// };
+
+const styles = theme => ({
+    root: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-around',
+        overflow: 'hidden',
+        backgroundColor: theme.palette.background.paper,
     },
-    media: {
-        height: 'auto',
+    gridList: {
+        width: 500,
+        height: 450,
     },
-};
+    icon: {
+        color: 'rgba(255, 255, 255, 0.54)',
+    },
+});
+
+
 
 class MovieCard extends React.Component {
     render() {
+        const tileData = [
+            {
+                img: this.props.movieInfo.Poster,
+                title: this.props.movieInfo.Title,
+                author: 'author'
+            },
+        ];
         const { classes } = this.props;
         return (
-            <Card className={classes.card}>
-                <CardActionArea>
-                    <img alt="poster" src={this.props.movieInfo.Poster} />
-                    <CardContent>
-                        <Typography gutterBottom variant="h5" component="h2">
-                            {this.props.movieInfo.Title}
-                        </Typography>
-                        <Typography component="p">
-                            Movie Description
-                        </Typography>
-                    </CardContent>
-                </CardActionArea>
-                <CardActions>
-                    <Button size="small" color="primary">
-                        IMDb Link
-                    </Button>
-                    <Button size="small" color="primary">
-                        Release Date
-                    </Button>
-                </CardActions>
-            </Card>
+            <div className={classes.root}>
+                <GridList cellHeight={'auto'} className={classes.gridList}>
+                    <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
+                        <ListSubheader component="div">December</ListSubheader>
+                    </GridListTile>
+                    {tileData.map(tile => (
+                        <GridListTile key={tile.img}>
+                            <img src={tile.img} alt={tile.title} />
+                            <GridListTileBar
+                                title={tile.title}
+                                subtitle={<span>by: {tile.author}</span>}
+                                actionIcon={
+                                    <IconButton className={classes.icon}>
+                                        {/*<InfoIcon />*/}
+                                    </IconButton>
+                                }
+                            />
+                        </GridListTile>
+                    ))}
+                </GridList>
+            </div>
         );
     }
 }
 
-// MovieCard.propTypes = {
-//     classes: PropTypes.object.isRequired,
-// };
+MovieCard.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
 
 export default withStyles(styles)(MovieCard);

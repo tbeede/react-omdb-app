@@ -278,8 +278,8 @@ class Search extends React.Component {
     }
 }
 
-// Search.propTypes = {
-//     classes: PropTypes.object.isRequired,
-// };
+Search.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
 
 export default withStyles(styles)(Search);
