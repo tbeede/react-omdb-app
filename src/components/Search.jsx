@@ -16,6 +16,8 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import MovieCard from "./MovieCard";
+import {Input, TextField} from "@material-ui/core";
 
 const styles = theme => ({
     root: {
@@ -88,6 +90,14 @@ const styles = theme => ({
 });
 
 class Search extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            moviesList: [],
+            errorMessage: [],
+        }
+    }
     state = {
         anchorEl: null,
         mobileMoreAnchorEl: null,
@@ -109,6 +119,42 @@ class Search extends React.Component {
     handleMobileMenuClose = () => {
         this.setState({ mobileMoreAnchorEl: null });
     };
+
+    handleInputChange = () => {
+        this.setState({
+            query: this.search.value
+        })
+    }
+
+    fetchMovieID() {
+        console.log("Searching for movie: " + this.state.query)
+        let urlString = `http://www.omdbapi.com/?s=${this.state.query}&apikey=f86c0e32`
+        this.fetchApi(urlString)
+    }
+
+    fetchApi(url) {
+        fetch(url)
+            .then((res) => res.json())
+            .then((response) => {
+
+                let resultList = [];
+
+                resultList = (
+                    response.Search.map((item, index) => (
+                        <MovieCard movieInfo={item} key={index} />
+                    ))
+                )
+                this.setState({
+                    moviesList: resultList
+                })
+            })
+            .catch((error) => {
+                console.error(error);
+                this.setState({
+                    errorMessage: error="End of results"
+                });
+            })
+    }
 
     render() {
         const { anchorEl, mobileMoreAnchorEl } = this.state;
@@ -177,7 +223,14 @@ class Search extends React.Component {
                                 <SearchIcon />
                             </div>
                             <InputBase
-                                placeholder="Search…"
+                                inputRef={input => this.search = input}
+                                onChange={this.handleInputChange}
+                                placeholder="Search for a movie or television show"
+                                onKeyPress={event => {
+                                    if (event.key === 'Enter') {
+                                        this.fetchMovieID();
+                                    }
+                                }}
                                 classes={{
                                     root: classes.inputRoot,
                                     input: classes.inputInput,
@@ -210,6 +263,12 @@ class Search extends React.Component {
                                 <MoreIcon />
                             </IconButton>
                         </div>
+                        <div>
+                            {this.state.moviesList}
+                        </div>
+                        <div style={{ paddingLeft: 20, paddingTop: 20, paddingBottom: 20, }}>
+                            {this.state.errorMessage}
+                        </div>
                     </Toolbar>
                 </AppBar>
                 {renderMenu}
@@ -219,8 +278,8 @@ class Search extends React.Component {
     }
 }
 
-Search.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
+// Search.propTypes = {
+//     classes: PropTypes.object.isRequired,
+// };
 
 export default withStyles(styles)(Search);

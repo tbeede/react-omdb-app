@@ -18,39 +18,37 @@ const styles = {
     },
 };
 
-function MovieCard(props) {
-    const { classes } = props;
-    return (
-        <Card className={classes.card}>
-            <CardActionArea>
-                <CardMedia
-                    className={classes.media}
-                    image=""
-                    title=""
-                />
-                <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
-                        Movie Placeholder
-                    </Typography>
-                    <Typography component="p">
-                       Movie Description
-                    </Typography>
-                </CardContent>
-            </CardActionArea>
-            <CardActions>
-                <Button size="small" color="primary">
-                    IMDb Link
-                </Button>
-                <Button size="small" color="primary">
-                    Release Date
-                </Button>
-            </CardActions>
-        </Card>
-    );
+class MovieCard extends React.Component {
+    render() {
+        const { classes } = this.props;
+        return (
+            <Card className={classes.card}>
+                <CardActionArea>
+                    <img alt="poster" src={this.props.movieInfo.Poster} />
+                    <CardContent>
+                        <Typography gutterBottom variant="h5" component="h2">
+                            {this.props.movieInfo.Title}
+                        </Typography>
+                        <Typography component="p">
+                            Movie Description
+                        </Typography>
+                    </CardContent>
+                </CardActionArea>
+                <CardActions>
+                    <Button size="small" color="primary">
+                        IMDb Link
+                    </Button>
+                    <Button size="small" color="primary">
+                        Release Date
+                    </Button>
+                </CardActions>
+            </Card>
+        );
+    }
 }
 
-MovieCard.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
+// MovieCard.propTypes = {
+//     classes: PropTypes.object.isRequired,
+// };
 
 export default withStyles(styles)(MovieCard);
