@@ -7,6 +7,7 @@ import ListSubheader from "@material-ui/core/ListSubheader";
 import hackers from "../images/hackers.jpg"
 import IconButton from "@material-ui/core/IconButton";
 import InfoIcon from '@material-ui/icons/Info';
+import axios from 'axios';
 
 const styles = theme => ({
     root: {
@@ -14,7 +15,7 @@ const styles = theme => ({
         flexWrap: 'wrap',
         justifyContent: 'space-around',
         overflow: 'hidden',
-        backgroundColor: theme.palette.background.paper,
+        backgroundColor: 'black',
     },
     gridList: {
         width: 500,
@@ -25,28 +26,45 @@ const styles = theme => ({
     },
 });
 
-class MovieCard extends React.Component {
+class MovieGrid extends React.Component {
+    state = {
+        search: [],
+            title: [],
+            poster: [],
+            year: []
+    };
+
+    componentDidMount() {
+        axios
+            .get(
+                `http://www.omdbapi.com/?s=matrix&apikey=f86c0e32`
+            )
+            .then(res => {
+                this.setState({
+                    search: res.data.Search,
+                    title: res.data.Search.Title,
+                    poster: res.data.Search.Poster,
+                    year: res.data.Search.Year
+                });
+            })
+            .catch(err => console.log(err));
+    }
+
     render() {
-        const tileData = [
-            {
-                img: hackers,
-                title: 'Hackers',
-                subTitle: 'hackers'
-            },
-        ];
+        const { search, title } = this.state;
         const { classes } = this.props;
         return (
             <div className={classes.root}>
-                <GridList cellHeight={350} className={classes.gridList}>
-                    <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
+                <GridList cellHeight={'auto'} className={classes.gridList}>
+                    <GridListTile key="Subheader" cols={4} style={{ height: 'auto' }}>
                         <ListSubheader component="div">December</ListSubheader>
                     </GridListTile>
-                    {tileData.map(tile => (
-                        <GridListTile key={tile.img}>
-                            <img src={tile.img} alt={tile.title} />
+                    {search.map(tile => (
+                        <GridListTile key={tile.Poster}>
+                            <img src={tile.Poster} alt={tile.Title} />
                             <GridListTileBar
                                 title={tile.title}
-                                subtitle={<span>by: {tile.subTitle}</span>}
+                                subtitle={<span>by: {tile.Year}</span>}
                                 actionIcon={
                                     <IconButton className={classes.icon}>
                                         <InfoIcon />
@@ -61,4 +79,4 @@ class MovieCard extends React.Component {
     }
 }
 
-export default withStyles(styles)(MovieCard);
+export default withStyles(styles)(MovieGrid);

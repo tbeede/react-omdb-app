@@ -12,11 +12,8 @@ import { withStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import MovieCard from "./MovieCard";
-import {Input, TextField} from "@material-ui/core";
 
 const styles = theme => ({
     root: {
@@ -150,15 +147,7 @@ class Search extends React.Component {
             >
                 <MenuItem onClick={this.handleMobileMenuClose}>
                     <IconButton color="inherit">
-                        <Badge badgeContent={4} color="secondary">
-                            <MailIcon />
-                        </Badge>
-                    </IconButton>
-                    <p>Messages</p>
-                </MenuItem>
-                <MenuItem onClick={this.handleMobileMenuClose}>
-                    <IconButton color="inherit">
-                        <Badge badgeContent={11} color="secondary">
+                        <Badge badgeContent={0} color="secondary">
                             <NotificationsIcon />
                         </Badge>
                     </IconButton>
@@ -207,11 +196,6 @@ class Search extends React.Component {
                         </div>
                         <div className={classes.grow} />
                         <div className={classes.sectionDesktop}>
-                            <IconButton color="inherit">
-                                <Badge badgeContent={0} color="secondary">
-                                    <MailIcon />
-                                </Badge>
-                            </IconButton>
                             <IconButton color="inherit">
                                 <Badge badgeContent={0} color="secondary">
                                     <NotificationsIcon />
