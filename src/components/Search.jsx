@@ -180,6 +180,9 @@ class Search extends React.Component {
                         <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
                             <MenuIcon />
                         </IconButton>
+                        <i className="material-icons">
+                            local_movies
+                        </i>
                         <Typography className={classes.title} variant="h6" color="inherit" noWrap>
                             OMDb Search
                         </Typography>

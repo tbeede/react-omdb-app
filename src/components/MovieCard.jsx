@@ -8,8 +8,6 @@ import hackers from "../images/hackers.jpg"
 import IconButton from "@material-ui/core/IconButton";
 import InfoIcon from '@material-ui/icons/Info';
 
-  
-
 const styles = theme => ({
     root: {
         display: 'flex',
@@ -27,8 +25,6 @@ const styles = theme => ({
     },
 });
 
-
-
 class MovieCard extends React.Component {
     render() {
         const tileData = [
@@ -41,7 +37,7 @@ class MovieCard extends React.Component {
         const { classes } = this.props;
         return (
             <div className={classes.root}>
-                <GridList cellHeight={'auto'} className={classes.gridList}>
+                <GridList cellHeight={350} className={classes.gridList}>
                     <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
                         <ListSubheader component="div">December</ListSubheader>
                     </GridListTile>
