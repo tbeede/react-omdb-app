@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -73,9 +72,9 @@ const styles = theme => ({
         paddingBottom: theme.spacing.unit,
         paddingLeft: theme.spacing.unit * 10,
         transition: theme.transitions.create('width'),
-        width: '100%',
+        width: 'auto',
         [theme.breakpoints.up('md')]: {
-            width: 200,
+            width: 700,
         },
     },
     sectionDesktop: {
@@ -97,8 +96,7 @@ class Search extends React.Component {
         super(props);
 
         this.state = {
-            moviesList: [],
-            errorMessage: [],
+
         }
     }
     state = {
@@ -195,7 +193,7 @@ class Search extends React.Component {
                                 placeholder="Search for a movie or television show"
                                 onKeyPress={event => {
                                     if (event.key === 'Enter') {
-                                        this.fetchMovieID();
+                                        // this.fetchMovieID();
                                     }
                                 }}
                                 classes={{
@@ -230,12 +228,6 @@ class Search extends React.Component {
                                 <MoreIcon />
                             </IconButton>
                         </div>
-                        <div>
-                            {this.state.moviesList}
-                        </div>
-                        <div style={{ paddingLeft: 20, paddingTop: 20, paddingBottom: 20, }}>
-                            {this.state.errorMessage}
-                        </div>
                     </Toolbar>
                 </AppBar>
                 {renderMenu}
@@ -244,9 +236,5 @@ class Search extends React.Component {
         );
     }
 }
-
-Search.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
 
 export default withStyles(styles)(Search);

@@ -2,15 +2,24 @@ import React from 'react';
 import './App.css';
 import Search from './components/Search';
 import MovieCard from './components/MovieCard';
-import Toolbar from "@material-ui/core/Toolbar";
+import {withStyles} from "@material-ui/core";
 
-function App() {
-  return (
-    <div className="App">
-      <Search/>
-      {/*<MovieCard/>*/}
-    </div>
-  );
+const styles = ({
+    // body: {
+    //     backgroundColor: 'black'
+    // }
+});
+
+class App extends React.Component {
+    render() {
+        const { classes } = this.props;
+        return (
+            <div className={classes.body}>
+                <Search/>
+                <MovieCard/>
+            </div>
+        );
+    }
 }
 
-export default App;
+export default withStyles(styles)(App);
