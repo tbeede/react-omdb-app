@@ -23,6 +23,9 @@ const styles = theme => ({
     root: {
         width: '100%',
     },
+    toolbar: {
+        backgroundColor: 'black',
+    },
     grow: {
         flexGrow: 1,
     },
@@ -45,7 +48,7 @@ const styles = theme => ({
         },
         marginRight: theme.spacing.unit * 2,
         marginLeft: 0,
-        width: '100%',
+        width: 'auto',
         [theme.breakpoints.up('sm')]: {
             marginLeft: theme.spacing.unit * 3,
             width: 'auto',
@@ -120,42 +123,6 @@ class Search extends React.Component {
         this.setState({ mobileMoreAnchorEl: null });
     };
 
-    handleInputChange = () => {
-        this.setState({
-            query: this.search.value
-        })
-    }
-
-    fetchMovieID() {
-        console.log("Searching for movie: " + this.state.query)
-        let urlString = `http://www.omdbapi.com/?s=${this.state.query}&apikey=f86c0e32`
-        this.fetchApi(urlString)
-    }
-
-    fetchApi(url) {
-        fetch(url)
-            .then((res) => res.json())
-            .then((response) => {
-
-                let resultList = [];
-
-                resultList = (
-                    response.Search.map((item, index) => (
-                        <MovieCard movieInfo={item} key={index} />
-                    ))
-                )
-                this.setState({
-                    moviesList: resultList
-                })
-            })
-            .catch((error) => {
-                console.error(error);
-                this.setState({
-                    errorMessage: error="End of results"
-                });
-            })
-    }
-
     render() {
         const { anchorEl, mobileMoreAnchorEl } = this.state;
         const { classes } = this.props;
@@ -211,7 +178,7 @@ class Search extends React.Component {
         return (
             <div className={classes.root}>
                 <AppBar position="static">
-                    <Toolbar>
+                    <Toolbar className={classes.toolbar}>
                         <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
                             <MenuIcon />
                         </IconButton>
