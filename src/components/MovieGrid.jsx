@@ -1,33 +1,30 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import {GridListTileBar} from "@material-ui/core";
-import GridList from "@material-ui/core/GridList";
+import Grid from '@material-ui/core/Grid';
+import axios from 'axios';
 import GridListTile from "@material-ui/core/GridListTile";
-import ListSubheader from "@material-ui/core/ListSubheader";
-import hackers from "../images/hackers.jpg"
+import GridListTileBar from "@material-ui/core/GridListTileBar";
 import IconButton from "@material-ui/core/IconButton";
 import InfoIcon from '@material-ui/icons/Info';
-import axios from 'axios';
 
 const styles = theme => ({
     root: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-around',
-        overflow: 'hidden',
+        flexGrow: 1,
         backgroundColor: 'black',
     },
-    gridList: {
-        width: 500,
-        height: 450,
+    paper: {
+        height: 140,
+        width: 100,
     },
-    icon: {
-        color: 'rgba(255, 255, 255, 0.54)',
+    control: {
+        padding: theme.spacing.unit * 2,
     },
 });
 
 class MovieGrid extends React.Component {
     state = {
+        spacing: '16',
         search: [],
     };
 
@@ -49,32 +46,35 @@ class MovieGrid extends React.Component {
     }
 
     render() {
-        // const { search } = this.state;
         const { classes } = this.props;
+        const { spacing } = this.state;
         return (
-            <div className={classes.root}>
-                <GridList cellHeight={'auto'} className={classes.gridList}>
-                    <GridListTile key="Subheader" cols={4} style={{ height: 'auto' }}>
-                        <ListSubheader component="div">Results</ListSubheader>
-                    </GridListTile>
-                    {this.state.search.map(tile => (
-                        <GridListTile key={tile.Poster}>
-                            <img src={tile.Poster} alt={tile.Title} />
-                            <GridListTileBar
-                                title={tile.Title}
-                                subtitle={<span>{tile.Year}</span>}
-                                actionIcon={
-                                    <IconButton className={classes.icon}>
-                                        <InfoIcon />
-                                    </IconButton>
-                                }
-                            />
-                        </GridListTile>
-                    ))}
-                </GridList>
-            </div>
+            <Grid container className={classes.root} spacing={8}>
+                <Grid item xs={12}>
+                    <Grid container className={classes.demo} justify="center" spacing={Number(spacing)}>
+                        {this.state.search.map(tile => (
+                            <GridListTile key={tile.Poster}>
+                                <img src={tile.Poster} alt={tile.Title} />
+                                <GridListTileBar
+                                    title={tile.Title}
+                                    subtitle={<span>{tile.Year}</span>}
+                                    actionIcon={
+                                        <IconButton className={classes.icon}>
+                                            <InfoIcon />
+                                        </IconButton>
+                                    }
+                                />
+                            </GridListTile>
+                        ))}
+                    </Grid>
+                </Grid>
+            </Grid>
         );
     }
 }
+
+MovieGrid.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
 
 export default withStyles(styles)(MovieGrid);
