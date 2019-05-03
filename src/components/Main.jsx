@@ -4,6 +4,7 @@ import MovieGrid from "./MovieGrid";
 
 class Main extends React.Component {
     render() {
+        const { movie } = this.props;
         return(
             <React.Fragment>
                 <Search />
