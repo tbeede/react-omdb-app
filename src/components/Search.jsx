@@ -14,6 +14,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import axios from "axios";
 
 const styles = theme => ({
     root: {
@@ -89,16 +90,23 @@ const styles = theme => ({
 });
 
 class Search extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-
-        }
-    }
     state = {
+        search: [],
+        title: '',
         anchorEl: null,
         mobileMoreAnchorEl: null,
+    };
+
+    handleChange = event => {
+        console.log("this is title state " +  this.state.title);
+        this.setState({
+            [event.target.name]: event.target.value
+        })
+    };
+
+    searchMovie = event => {
+        event.preventDefault();
+        console.log("this is title state " +  this.state.title);
     };
 
     handleProfileMenuOpen = event => {
@@ -181,11 +189,11 @@ class Search extends React.Component {
                             </div>
                             <InputBase
                                 inputRef={input => this.search = input}
-                                onChange={this.handleInputChange}
+                                onChange={this.handleChange.bind(this)}
                                 placeholder="Search for a movie or television show"
                                 onKeyPress={event => {
                                     if (event.key === 'Enter') {
-                                        // this.fetchMovieID();
+                                        this.searchMovie();
                                     }
                                 }}
                                 classes={{

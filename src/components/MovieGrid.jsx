@@ -29,15 +29,13 @@ const styles = theme => ({
 class MovieGrid extends React.Component {
     state = {
         search: [],
-            title: [],
-            poster: [],
-            year: []
     };
 
     componentDidMount() {
+        // TODO: onChange event to replace 'title' placeholder e.g., `http://www.omdbapi.com/?s=${this.props.title}&apikey=f86c0e32`
         axios
             .get(
-                `http://www.omdbapi.com/?s=matrix&apikey=f86c0e32`
+                `http://www.omdbapi.com/?s=hackers&apikey=f86c0e32`
             )
             .then(res => {
                 this.setState({
@@ -51,20 +49,20 @@ class MovieGrid extends React.Component {
     }
 
     render() {
-        const { search, title } = this.state;
+        // const { search } = this.state;
         const { classes } = this.props;
         return (
             <div className={classes.root}>
                 <GridList cellHeight={'auto'} className={classes.gridList}>
                     <GridListTile key="Subheader" cols={4} style={{ height: 'auto' }}>
-                        <ListSubheader component="div">December</ListSubheader>
+                        <ListSubheader component="div">Results</ListSubheader>
                     </GridListTile>
-                    {search.map(tile => (
+                    {this.state.search.map(tile => (
                         <GridListTile key={tile.Poster}>
                             <img src={tile.Poster} alt={tile.Title} />
                             <GridListTileBar
-                                title={tile.title}
-                                subtitle={<span>by: {tile.Year}</span>}
+                                title={tile.Title}
+                                subtitle={<span>{tile.Year}</span>}
                                 actionIcon={
                                     <IconButton className={classes.icon}>
                                         <InfoIcon />
