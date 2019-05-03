@@ -31,11 +31,10 @@ class MovieGrid extends React.Component {
     state = {
         spacing: '16',
         movieInfo: [],
-        // searchTerm: 'Hackers' // default
     };
 
     componentDidMount() {
-        console.log("the search term in MovieGrid is: " + this.props.movieId);
+        console.log("the movieId in MovieGrid is: " + this.props.movieId);
 
         let url = `https://www.omdbapi.com/?apikey=f86c0e32&i=${
             this.props.movieID

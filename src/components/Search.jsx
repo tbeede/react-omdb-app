@@ -101,36 +101,8 @@ class Search extends React.Component {
             searchTerm: '',
         };
 
-        this.handleChange = this.handleChange.bind(this);
+        // this.handleChange = this.handleChange.bind(this);
     }
-
-    handleChange = event => {
-        console.log("this is the Search searchTerm: " + this.state.searchTerm);
-        this.setState({
-            searchTerm: event.target.value
-        });
-    };
-
-    search() {
-        axios
-            .get(
-                `https://www.omdbapi.com/?apikey=f86c0e32&s=${
-                    this.state.searchTerm
-                    }&plot=full`
-            )
-            .then(res => res.data)
-            .then(res => {
-                if (!res.Search) {
-                    this.setState({ moviesList: [] });
-                    return;
-                }
-
-                const moviesList = res.Search.map(movie => movie.imdbID);
-                this.setState({
-                    moviesList
-                });
-            });
-    };
 
     handleProfileMenuOpen = event => {
         this.setState({ anchorEl: event.currentTarget });
@@ -150,8 +122,8 @@ class Search extends React.Component {
     };
 
     render() {
-        const { anchorEl, mobileMoreAnchorEl, moviesList } = this.state;
-        const { classes } = this.props;
+        const { anchorEl, mobileMoreAnchorEl } = this.state;
+        const { classes, onChange, onKeyPress } = this.props;
         const isMenuOpen = Boolean(anchorEl);
         const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -211,13 +183,9 @@ class Search extends React.Component {
                                 <SearchIcon />
                             </div>
                             <InputBase
-                                onChange={this.handleChange}
+                                onChange={onChange}
+                                onKeyPress={onKeyPress}
                                 placeholder="Search for a movie or television show"
-                                onKeyPress={event => {
-                                    if (event.key === 'Enter') {
-                                        this.search();
-                                    }
-                                }}
                                 classes={{
                                     root: classes.inputRoot,
                                     input: classes.inputInput,
@@ -249,16 +217,16 @@ class Search extends React.Component {
                 </AppBar>
                 {renderMenu}
                 {renderMobileMenu}
-                {moviesList.length > 0 ? (
-                    moviesList.map(movie => (
-                        <MovieGrid movieID={movie} key={movie} />
-                    ))
-                ) : (
-                    <p>
-                        Couldn't find any movie. Please search again using
-                        another search criteria.
-                    </p>
-                )}
+                {/*{moviesList.length > 0 ? (*/}
+                {/*    moviesList.map(movie => (*/}
+                {/*        <MovieGrid movieID={movie} key={movie} />*/}
+                {/*    ))*/}
+                {/*) : (*/}
+                {/*    <p>*/}
+                {/*        Couldn't find any movie. Please search again using*/}
+                {/*        another search criteria.*/}
+                {/*    </p>*/}
+                {/*)}*/}
             </div>
         );
     }
