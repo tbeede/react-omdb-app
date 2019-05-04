@@ -9,7 +9,6 @@ class Main extends React.Component {
 
         this.state = {
             moviesList: [],
-            searchTerm: '',
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -34,7 +33,9 @@ class Main extends React.Component {
             .then(res => res.data)
             .then(res => {
                 if (!res.Search) {
-                    this.setState({ moviesList: [] });
+                    this.setState({
+                        moviesList: []
+                    });
                     return;
                 }
 
@@ -55,12 +56,11 @@ class Main extends React.Component {
         const { moviesList } = this.state;
         return(
             <React.Fragment>
-                <Search
-                    onChange={this.handleChange}
-                    onKeyPress={this.handleKeyPress}
-                />
-                < MovieGrid movieMap={moviesList} />
-                }
+                    <Search
+                        onChange={this.handleChange}
+                        onKeyPress={this.handleKeyPress}
+                    />
+                    < MovieGrid movieMap={moviesList}/>
             </React.Fragment>
         );
     }

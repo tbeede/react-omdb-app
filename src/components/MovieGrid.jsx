@@ -5,10 +5,10 @@ import GridListTile from "@material-ui/core/GridListTile";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
 import IconButton from "@material-ui/core/IconButton";
 import InfoIcon from '@material-ui/icons/Info';
-import {CircularProgress, withStyles} from "@material-ui/core";
+import {withStyles} from "@material-ui/core";
 import axios from "axios";
-import SoldOut from '../images/sold-out.jpg'
 import NoPhoto from '../images/no-photo.jpg'
+import Hackers from '../images/hackersposter.jpg'
 
 const styles = theme => ({
     root: {
@@ -56,24 +56,26 @@ class MovieGrid extends React.Component {
             )
             .then(res => res.data)
             .then(res => {
-                this.setState({ movieInfo: res });
+                this.setState({
+                    movieInfo: res
+                });
             })
             .catch(err => console.log(err));
     }
 
     render() {
         const { classes, movieMap } = this.props;
-        const { spacing, imdbId } = this.state;
+        const { spacing } = this.state;
 
         return (
             <Grid container className={classes.root} spacing={8}>
-                <Grid item xs={12}>
+                <Grid item xs={10}>
                     <Grid container justify="center" spacing={Number(spacing)}>
                         {movieMap.length > 0 ? (
                             movieMap.map(res => (
                                 <GridListTile key={res.Poster}>
                                     {res.Poster === '' || res.Poster === 'N/A' ?
-                                        <img src={NoPhoto} alt={NoPhoto} />
+                                        <img src={NoPhoto} alt={res.Title} />
                                         : <img src={res.Poster} alt={res.Title} />
                                     }
                                     <GridListTileBar
@@ -89,8 +91,8 @@ class MovieGrid extends React.Component {
                             ))
                         ) : (
                             <div className={classes.error}>
-                                <img src={SoldOut} alt={SoldOut} />
-                                Sorry. We couldn't find the movie you're searching for. Please try again.
+                                <img src={Hackers} alt={Hackers} />
+                                Welcome to Open Movie Database Search [OMDb]
                             </div>
                         )}
                     </Grid>
