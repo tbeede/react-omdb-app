@@ -4,12 +4,27 @@ import MovieGrid from "./MovieGrid";
 import axios from "axios";
 import InputBase from "@material-ui/core/InputBase";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import {withStyles} from "@material-ui/core";
+
+const styles = ({
+    root: {
+        backgroundColor: 'black',
+    },
+});
 
 class Main extends React.Component {
-    state = {
-        moviesList: ['tt0113243'],
-        searchTerm: '',
-    };
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            moviesList: ['tt0113243'],
+            searchTerm: '',
+        };
+
+        this.handleChange = this.handleChange.bind(this);
+        this.handleKeyPress = this.handleKeyPress.bind(this);
+    }
+
 
     handleChange = event => {
         console.log("this is the Search searchTerm: " + this.state.searchTerm);
@@ -42,17 +57,19 @@ class Main extends React.Component {
             });
     };
 
+    handleKeyPress(event) {
+        if (event.key === 'Enter') {
+            this.search();
+        }
+    };
+
     render() {
         const { moviesList } = this.state;
         return(
             <React.Fragment>
                 <Search
                     onChange={this.handleChange}
-                    onKeyPress={event => {
-                        if (event.key === 'Enter') {
-                            this.search();
-                        }
-                    }}
+                    onKeyPress={this.handleKeyPress}
                 />
                 <React.Fragment>
                     {<CircularProgress> moviesList.length > 0 </CircularProgress> ? (
@@ -70,4 +87,4 @@ class Main extends React.Component {
     }
 }
 
-export default Main;
+export default withStyles(styles)(Main);
