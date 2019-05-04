@@ -100,8 +100,6 @@ class Search extends React.Component {
             moviesList: ['tt0113243'],
             searchTerm: '',
         };
-
-        // this.handleChange = this.handleChange.bind(this);
     }
 
     handleProfileMenuOpen = event => {
@@ -217,16 +215,6 @@ class Search extends React.Component {
                 </AppBar>
                 {renderMenu}
                 {renderMobileMenu}
-                {/*{moviesList.length > 0 ? (*/}
-                {/*    moviesList.map(movie => (*/}
-                {/*        <MovieGrid movieID={movie} key={movie} />*/}
-                {/*    ))*/}
-                {/*) : (*/}
-                {/*    <p>*/}
-                {/*        Couldn't find any movie. Please search again using*/}
-                {/*        another search criteria.*/}
-                {/*    </p>*/}
-                {/*)}*/}
             </div>
         );
     }

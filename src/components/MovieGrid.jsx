@@ -7,7 +7,8 @@ import IconButton from "@material-ui/core/IconButton";
 import InfoIcon from '@material-ui/icons/Info';
 import {CircularProgress, withStyles} from "@material-ui/core";
 import axios from "axios";
-import Search from "./Search";
+import SoldOut from '../images/sold-out.jpg'
+import NoPhoto from '../images/no-photo.jpg'
 
 const styles = theme => ({
     root: {
@@ -34,11 +35,9 @@ class MovieGrid extends React.Component {
     };
 
     componentDidMount() {
-        console.log("the movieId in MovieGrid is: " + this.props.movieId);
-
-        let url = `https://www.omdbapi.com/?apikey=f86c0e32&i=${
-            this.props.movieID
-            }&plot=full`;
+        let url = `https://www.omdbapi.com/?apikey=f86c0e32&s=
+        ${this.props.movieMap}
+        &plot=full`;
 
         axios
             .get(
@@ -52,40 +51,36 @@ class MovieGrid extends React.Component {
     }
 
     render() {
-        const { classes } = this.props;
+        const { classes, movieMap } = this.props;
         const { spacing } = this.state;
-        const {
-            Title,
-            Released,
-            Genre,
-            Plot,
-            Poster,
-            imdbRating,
-            Year
-        } = this.state.movieInfo;
-
-        if (!Poster || Poster === 'N/A') {
-            return null;
-        }
 
         return (
             <Grid container className={classes.root} spacing={8}>
                 <Grid item xs={12}>
                     <Grid container justify="center" spacing={Number(spacing)}>
-                        {/*{movieInfo.map(res => (*/}
-                            <GridListTile key={Poster}>
-                                <img src={Poster} alt={Title}/>
-                                <GridListTileBar
-                                    title={Title}
-                                    subtitle={<span>{Year}</span>}
-                                    actionIcon={
-                                        <IconButton className={classes.icon}>
-                                            <InfoIcon/>
-                                        </IconButton>
+                        {movieMap.length > 0 ? (
+                            movieMap.map(res => (
+                                <GridListTile key={res.Poster}>
+                                    {res.Poster === '' || res.Poster === 'N/A' ?
+                                        <img src={NoPhoto} alt={NoPhoto} />
+                                        : <img src={res.Poster} alt={res.Title} />
                                     }
-                                />
-                            </GridListTile>
-                        ))}
+                                    <GridListTileBar
+                                        title={res.Title}
+                                        subtitle={<span>{res.Year}</span>}
+                                        actionIcon={
+                                            <IconButton className={classes.icon}>
+                                                <InfoIcon/>
+                                            </IconButton>
+                                        }
+                                    />
+                                </GridListTile>
+                            ))
+                        ) : (
+                            <p>
+                                Sorry. We couldn't find the movie you're searching for. Please try again.
+                            </p>
+                        )}
                     </Grid>
                 </Grid>
             </Grid>

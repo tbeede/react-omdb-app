@@ -2,8 +2,6 @@ import React from "react";
 import Search from "./Search";
 import MovieGrid from "./MovieGrid";
 import axios from "axios";
-import InputBase from "@material-ui/core/InputBase";
-import CircularProgress from "@material-ui/core/CircularProgress";
 import {withStyles} from "@material-ui/core";
 
 const styles = ({
@@ -17,14 +15,13 @@ class Main extends React.Component {
         super(props);
 
         this.state = {
-            moviesList: ['tt0113243'],
+            moviesList: [],
             searchTerm: '',
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleKeyPress = this.handleKeyPress.bind(this);
     }
-
 
     handleChange = event => {
         console.log("this is the Search searchTerm: " + this.state.searchTerm);
@@ -35,7 +32,8 @@ class Main extends React.Component {
 
     search() {
 
-        console.log("the search term in Main is: " + this.props.searchTerm);
+        console.log("the search term in Main.jsx is: " + this.props.searchTerm);
+        console.log("moviesList is " + this.state.moviesList + "in Main.jsx");
 
         axios
             .get(
@@ -50,7 +48,7 @@ class Main extends React.Component {
                     return;
                 }
 
-                const moviesList = res.Search.map(movie => movie.imdbID);
+                const moviesList = res.Search;
                 this.setState({
                     moviesList
                 });
@@ -71,17 +69,7 @@ class Main extends React.Component {
                     onChange={this.handleChange}
                     onKeyPress={this.handleKeyPress}
                 />
-                <React.Fragment>
-                    {<CircularProgress> moviesList.length > 0 </CircularProgress> ? (
-                        moviesList.map(movie => (
-                            <MovieGrid movieID={movie} key={movie} />
-                        ))) : (
-                        <p>
-                            Couldn't find any movie. Please search again using
-                            another search criteria.
-                        </p>
-                    )}
-                </React.Fragment>
+                <MovieGrid movieMap={moviesList} />
             </React.Fragment>
         );
     }
