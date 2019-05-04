@@ -2,13 +2,6 @@ import React from "react";
 import Search from "./Search";
 import MovieGrid from "./MovieGrid";
 import axios from "axios";
-import {withStyles} from "@material-ui/core";
-
-const styles = ({
-    root: {
-        backgroundColor: 'black',
-    },
-});
 
 class Main extends React.Component {
     constructor(props) {
@@ -24,22 +17,19 @@ class Main extends React.Component {
     }
 
     handleChange = event => {
-        console.log("this is the Search searchTerm: " + this.state.searchTerm);
         this.setState({
             searchTerm: event.target.value
         });
     };
 
     search() {
-
-        console.log("the search term in Main.jsx is: " + this.props.searchTerm);
-        console.log("moviesList is " + this.state.moviesList + "in Main.jsx");
+        let url = `https://www.omdbapi.com/?apikey=f86c0e32&s=${
+            this.state.searchTerm
+            }&plot=full`;
 
         axios
             .get(
-                `https://www.omdbapi.com/?apikey=f86c0e32&s=${
-                    this.state.searchTerm
-                    }&plot=full`
+                url
             )
             .then(res => res.data)
             .then(res => {
@@ -69,10 +59,11 @@ class Main extends React.Component {
                     onChange={this.handleChange}
                     onKeyPress={this.handleKeyPress}
                 />
-                <MovieGrid movieMap={moviesList} />
+                < MovieGrid movieMap={moviesList} />
+                }
             </React.Fragment>
         );
     }
 }
 
-export default withStyles(styles)(Main);
+export default Main;

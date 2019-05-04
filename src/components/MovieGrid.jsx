@@ -25,6 +25,16 @@ const styles = theme => ({
     spinner: {
         color: '#134FA8',
         alignSelf: 'center'
+    },
+    error: {
+        fontSize: 20,
+        backgroundColor: 'black',
+        height: '100%',
+        position: 'absolute',
+        pointerEvents: 'none',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
     }
 });
 
@@ -32,6 +42,7 @@ class MovieGrid extends React.Component {
     state = {
         spacing: '16',
         movieInfo: [],
+        imdbId: 'tt0113243'
     };
 
     componentDidMount() {
@@ -52,7 +63,7 @@ class MovieGrid extends React.Component {
 
     render() {
         const { classes, movieMap } = this.props;
-        const { spacing } = this.state;
+        const { spacing, imdbId } = this.state;
 
         return (
             <Grid container className={classes.root} spacing={8}>
@@ -77,9 +88,10 @@ class MovieGrid extends React.Component {
                                 </GridListTile>
                             ))
                         ) : (
-                            <p>
+                            <div className={classes.error}>
+                                <img src={SoldOut} alt={SoldOut} />
                                 Sorry. We couldn't find the movie you're searching for. Please try again.
-                            </p>
+                            </div>
                         )}
                     </Grid>
                 </Grid>

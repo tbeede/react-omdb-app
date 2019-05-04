@@ -14,8 +14,6 @@ import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import axios from "axios";
-import MovieGrid from "./MovieGrid";
 
 const styles = theme => ({
     root: {
@@ -73,7 +71,7 @@ const styles = theme => ({
         transition: theme.transitions.create('width'),
         width: 'auto',
         [theme.breakpoints.up('md')]: {
-            width: 700,
+            width: 1200,
         },
     },
     sectionDesktop: {
@@ -146,14 +144,6 @@ class Search extends React.Component {
                 open={isMobileMenuOpen}
                 onClose={this.handleMenuClose}
             >
-                <MenuItem onClick={this.handleMobileMenuClose}>
-                    <IconButton color="inherit">
-                        <Badge badgeContent={0} color="secondary">
-                            <NotificationsIcon />
-                        </Badge>
-                    </IconButton>
-                    <p>Notifications</p>
-                </MenuItem>
                 <MenuItem onClick={this.handleProfileMenuOpen}>
                     <IconButton color="inherit">
                         <AccountCircle />
@@ -192,11 +182,6 @@ class Search extends React.Component {
                         </div>
                         <div className={classes.grow} />
                         <div className={classes.sectionDesktop}>
-                            <IconButton color="inherit">
-                                <Badge badgeContent={0} color="secondary">
-                                    <NotificationsIcon />
-                                </Badge>
-                            </IconButton>
                             <IconButton
                                 aria-owns={isMenuOpen ? 'material-appbar' : undefined}
                                 aria-haspopup="true"
