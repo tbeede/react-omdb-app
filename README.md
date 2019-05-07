@@ -6,8 +6,4 @@ This project uses the [Open Movie Database API](https://www.omdbapi.com/) to ret
 
 Simply clone the repo and run
 
-`$ npm install`
-
-and then
-
-``$ yarn start``
+`$ npm install && yarn start`
