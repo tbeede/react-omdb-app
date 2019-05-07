@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/react-omdb-app/static/css/main.36dce5da.chunk.css",
+    "main.js": "/react-omdb-app/static/js/main.3648034b.chunk.js",
+    "main.js.map": "/react-omdb-app/static/js/main.3648034b.chunk.js.map",
+    "runtime~main.js": "/react-omdb-app/static/js/runtime~main.e1eaaa40.js",
+    "runtime~main.js.map": "/react-omdb-app/static/js/runtime~main.e1eaaa40.js.map",
+    "static/css/2.d952d297.chunk.css": "/react-omdb-app/static/css/2.d952d297.chunk.css",
+    "static/js/2.a6c900b6.chunk.js": "/react-omdb-app/static/js/2.a6c900b6.chunk.js",
+    "static/js/2.a6c900b6.chunk.js.map": "/react-omdb-app/static/js/2.a6c900b6.chunk.js.map",
+    "index.html": "/react-omdb-app/index.html",
+    "precache-manifest.31ca97bfbe2cb236d3d0cce98ae9e013.js": "/react-omdb-app/precache-manifest.31ca97bfbe2cb236d3d0cce98ae9e013.js",
+    "service-worker.js": "/react-omdb-app/service-worker.js",
+    "static/css/2.d952d297.chunk.css.map": "/react-omdb-app/static/css/2.d952d297.chunk.css.map",
+    "static/css/main.36dce5da.chunk.css.map": "/react-omdb-app/static/css/main.36dce5da.chunk.css.map",
+    "static/media/hackersposter.jpg": "/react-omdb-app/static/media/hackersposter.a089d7c1.jpg",
+    "static/media/no-photo.jpg": "/react-omdb-app/static/media/no-photo.ce5fc191.jpg",
+    "static/media/octicons.css": "/react-omdb-app/static/media/octicons.ee5b1bee.woff"
+  }
+}
