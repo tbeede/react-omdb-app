@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "4d4ee65e31831bba9fda28851e19865a",
+    "revision": "1d55dd4a680d128f5caf7d0f60e167b3",
     "url": "/react-omdb-app/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/react-omdb-app/static/css/2.d952d297.chunk.css"
   },
   {
-    "revision": "9219eeae2f9647b08625",
+    "revision": "149ffab4faf4af990e32",
     "url": "/react-omdb-app/static/css/main.36dce5da.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/react-omdb-app/static/js/2.a6c900b6.chunk.js"
   },
   {
-    "revision": "9219eeae2f9647b08625",
-    "url": "/react-omdb-app/static/js/main.3648034b.chunk.js"
+    "revision": "149ffab4faf4af990e32",
+    "url": "/react-omdb-app/static/js/main.68932648.chunk.js"
   },
   {
     "revision": "86d7ec65b77c0ad767ee",
