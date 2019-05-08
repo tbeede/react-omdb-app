@@ -159,7 +159,7 @@ class Search extends React.Component {
                         <i className="material-icons">
                             local_movies
                         </i>
-                        <Link underline={'none'} block={true} href={'/home'}>
+                        <Link underline={'none'} block={true} href={'/react-omdb-app'}>
                         <Typography className={classes.title} variant="h5" color="inherit" noWrap>
                             OMDb Search
                         </Typography>
