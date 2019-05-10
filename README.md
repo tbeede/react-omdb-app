@@ -18,3 +18,4 @@ This is a work in progress. I've taken note of the bugs and enhancements and wil
  * Render default movie using `OMDb API` instead of being hard-coded
  * Repeat searches are buggy without first navigating `home` to search
  * Icon sizes and general styling
+ * Refactor using [React Hooks](https://reactjs.org/docs/hooks-overview.html)
