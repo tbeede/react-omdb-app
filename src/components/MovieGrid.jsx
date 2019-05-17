@@ -61,7 +61,7 @@ class MovieGrid extends React.Component {
                 });
             })
             .catch(err => console.log(err));
-    }
+    };
 
     render() {
         const { classes, movieMap } = this.props;
@@ -82,7 +82,9 @@ class MovieGrid extends React.Component {
                                         title={res.Title}
                                         subtitle={<span>{res.Year}</span>}
                                         actionIcon={
-                                            <IconButton className={classes.icon}>
+                                            <IconButton className={classes.icon}
+                                                        href={`https://www.imdb.com/title/` + res.imdbID}
+                                            >
                                                 <InfoIcon/>
                                             </IconButton>
                                         }
