@@ -169,7 +169,7 @@ class Search extends React.Component {
                                 <SearchIcon />
                             </div>
                             <InputBase
-                                inputProps={{maxLength: 20}}
+                                inputProps={{maxLength: 100}}
                                 onChange={onChange}
                                 onKeyPress={onKeyPress}
                                 placeholder="Search for a movie or television show"
