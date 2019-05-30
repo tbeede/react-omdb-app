@@ -73,7 +73,7 @@ class MovieGrid extends React.Component {
                     <Grid container justify="center" spacing={Number(spacing)}>
                         {movieMap.length > 0 ? (
                             movieMap.map(res => (
-                                <GridListTile key={res.Poster}>
+                                <GridListTile key={res.id}>
                                     {res.Poster === '' || res.Poster === 'N/A' ?
                                         <img src={NoPhoto} alt={res.Title} />
                                         : <img src={res.Poster} alt={res.Title} />
